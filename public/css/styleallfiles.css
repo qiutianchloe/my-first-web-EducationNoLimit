@@ -1,0 +1,29 @@
+nav{
+    font-size: 25px;
+    text-align: center;
+    font-family: verdana;
+}
+  .serch{
+    width: 25%;
+    margin-right: 30px;
+    float: right;
+    border:1px solid #5A5A5A;
+    border-radius:5px;
+  }
+  .margin{
+    margin: 40px;
+    margin-bottom: 5px;
+    margin-top: 10px;
+    font-size: large;
+  }
+
+  .background{
+    /*background: url(back.jpg);*/
+    background-repeat:no-repeat ;
+    background-size:100% 100%;
+    background-attachment:fixed;
+  }
+
+  .bar{
+    font-size: larger;
+  }

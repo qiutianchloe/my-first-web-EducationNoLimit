@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>userCenter</title>
+    <link href="/css/styleusercenter.css" rel="stylesheet" type="text/css" />
+	
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" 
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" 
+	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>	
+</head>
+
+<body>
+	<header>
+	  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+	    <a class="navbar-brand" href="/homePage">BINARYGUARDIAN</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" 
+		data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+	      <span class="navbar-toggler-icon"></span>
+	    </button>
+	    <div class="collapse navbar-collapse" id="navbarCollapse">
+	      <ul class="navbar-nav mr-auto">
+	        <li class="nav-item active">
+	          <a class="nav-link" href="/homePage">Home<span class="sr-only">(current)</span></a>
+	        </li>
+	        <li class="nav-item">
+	          <a class="nav-link" href="/allfiles">Files</a>
+	        </li>
+	      </ul>
+			&nbsp&nbsp
+			<form method='post' action='/logout'>
+				<button class="btn btn-secondary">Logout</button>
+			</form>
+	    </div>
+	  </nav>
+	</header>
+	<br><br><br><br>
+	<div class="container">
+		<h1 class="d-flex justify-content-between align-items-center mb-3">
+			        <span class="text-muted">Hello <%=username%>, welcome to usercenter!</span>
+		</h1>
+		<br><br><br>
+		<div class="row">
+		    <div class="col-md-4 order-md-1 mb-4">
+		      <h4 class="d-flex justify-content-between align-items-center mb-3">
+		        <span class="text-muted">Your Info</span>
+		      </h4>
+		      <ul class="list-group mb-3">
+		        <li class="list-group-item d-flex justify-content-between lh-condensed">
+		          <div>
+								<h6 class="my-0">Email Address</h6>
+		            <small class="text-muted"><%=userEmail%></small>
+		          </div>
+		        </li>
+		        <li class="list-group-item d-flex justify-content-between lh-condensed">
+		          <div>
+		            <h6 class="my-0">Age</h6>
+		            <small class="text-muted"><%=userAge%></small>
+		          </div>
+		        </li>
+		        <li class="list-group-item d-flex justify-content-between lh-condensed">
+		          <div>
+		            <h6 class="my-0">Your Information</h6>
+		            <small class="text-muted"><%=userInfo%></small>
+		          </div>
+		        </li>
+		        
+		      </ul>
+		
+			<form method='post' action='/logout'>
+				<a class="btn btn-secondary" href="/allfiles">show all study files</a>
+			</form>
+	
+		    </div>
+		    <div class="col-md-8 order-md-2">
+				<form method='get' action='/upload'>
+				    <button class="btn btn-primary my-2">upload study resources</button>
+				</form>
+				
+				<hr class="featurette-divider">
+				<h4 class="d-flex justify-content-between align-items-center mb-3">
+							<span class="text-muted">Your update History</span>
+							<span class="badge badge-secondary badge-pill"><%= numOfFile %></span>
+				</h4>
+				<% allfiles.forEach(function(file){ %>
+					
+					<div class="col-md-12">
+						<div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+							<div class="col p-4 d-flex flex-column position-static">
+								<h3 class="mb-0"><%= file %></h3>
+							</div>
+						</div>
+					</div>
+					<% }) %>
+		    </div>
+		  </div>
+	</div>
+
+</body>
+</html>

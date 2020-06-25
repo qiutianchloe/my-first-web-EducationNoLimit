@@ -1,0 +1,20 @@
+nav{
+    font-size: 25px;
+    text-align: center;
+    font-family: verdana;
+}
+.container{
+    text-align:center
+}
+body {
+    /*background: url(back.jpg);*/
+    background-repeat:no-repeat ;
+    background-size:100% 100%; 
+    background-attachment:fixed;
+}
+.head{
+    color: #808080;
+}
+.button{
+    font-size: larger;
+}

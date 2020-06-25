@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>upload files</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" 
+  integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+ 
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" 
+  integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>	
+
+    <script type="text/javascript">
+      function checkLevel(){
+		  		var sel=document.getElementById("level").value;
+			  	var span=document.getElementById("levelSpan"); 
+				  if(sel!=0){
+					  span.innerHTML=":>";  
+					  span.style.color="green"; 
+				  }else{
+					  span.innerHTML="Please choose a subject for your file, Thank you";
+					  span.style.color="red"; 
+				  }
+      }
+
+      function checkSubject(){
+		  		var sel=document.getElementById("subject").value;
+			  	var span=document.getElementById("subjectSpan"); 
+				  if(sel!=0){
+            span.innerHTML=":>";  
+					  span.style.color="green"; 
+				  }else{
+					  span.innerHTML="Please choose a level for your file, Thank you";
+					  span.style.color="red"; 
+				  }
+      }
+    </script>
+
+    <link href="/css/styleupload.css" rel="stylesheet" type="text/css" />
+</head>
+
+<!--header-->
+
+
+<body>
+	<header>
+	  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+	    <a class="navbar-brand" href="/homePage">BINARYGUARDIAN</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" 
+      data-target="#navbarCollapse" aria-controls="navbarCollapse" 
+      aria-expanded="false" aria-label="Toggle navigation">
+	      <span class="navbar-toggler-icon"></span>
+	    </button>
+	    <div class="collapse navbar-collapse" id="navbarCollapse">
+	      <ul class="navbar-nav mr-auto">
+	        <li class="nav-item active">
+	          <a class="nav-link" href="/homePage">Home<span class="sr-only">(current)</span></a>
+	        </li>
+	        <li class="nav-item">
+	          <a class="nav-link" href="/allfiles">Files</a>
+	        </li>
+	      </ul>
+            &nbsp&nbsp
+            <form method='post' action='/logout'>
+                <button class="btn btn-secondary">Logout</button>
+            </form>
+	    </div>
+	  </nav>
+	</header>
+	<br><br><br><br><br>
+<div align="center">
+	<div class="container">
+	<h1 class="d-flex justify-content-between align-items-center mb-3" >
+        <span class="text-muted" 
+        style="margin:0 auto;text-align:center;color:red">Upload for more people</span>
+	</h1>
+	</div>
+
+<form id="upload_form" name = "upload_form" action="/upload" method="POST" enctype="multipart/form-data">
+
+  <h5>Select an file to upload:</h5>
+
+  <div class="upload-container"><input id="file-picker" type="file" name="file" onblur="checkFile();"></div>
+  <span class="err"><!--errMsg.fileErr--></span><br><br>
+
+  Level:
+  <select name="level" id="level" onblur="checkLevel();" class="button">
+    <option value="0">--Please select--</option>
+    <option value="1">Preschool</option>
+    <option value="2">Primary</option>
+    <option value="3">High school</option>
+    <option value="4">University</option>	
+    <option value="5">Other</option>	
+  </select>
+  <span id="levelSpan"></span>
+  <br><br>
+
+
+  Subject:
+  <select name="subject" id="subject" onblur="checkSubject();" class="button">
+    <option value="0">--Please select--</option>
+    <option value="1">English</option>
+    <option value="2">Math</option>
+    <option value="3">Physics</option>
+    <option value="4">Arts</option>	
+    <option value="5">Medicine</option>
+    <option value="6">Language</option>
+    <option value="7">Chemistry</option>
+    <option value="8">Other</option>
+  </select>
+  <span id="subjectSpan"></span>
+  <br><br>
+  Description: <input type="text" name="desc" class="button">
+  
+  <br><br>
+  <!--disable = "disable" or ""-->
+  <div><input type="submit" class="btn btn-primary my-2"  
+    value="Upload File" id="sub" disable = "disable"></div>
+</form>
+
+<h2 id="update info" style="color:slateblue"><%= update_infomation%></h2>
+
+</div>
+
+
+
+</body>
+
+</html>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+
+    const message = document.getElementById('message');
+    const picker = document.getElementById('file-picker');
+
+    document.getElementById('upload_form').addEventListener('submit', (e) => {
+
+      message.innerText = '';
+
+      if(!picker.files.length) {
+        message.innerText = 'Please select an image to upload.';
+        e.preventDefault();
+        return false;
+      }
+    });
+
+  });
+</script>

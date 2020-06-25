@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>file information</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    
+    <link href="/css/stylefileinfo.css" rel="stylesheet" type="text/css" />
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" 
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" 
+    crossorigin="anonymous">
+    
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" 
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" 
+    crossorigin="anonymous"></script>
+    
+    <script>
+        var fname = '<%= filename %>';
+        var yourrate=NaN; 
+        var submitted = false;
+        window.onload = function () {
+            var box = document.getElementById("box");
+            var images = box.getElementsByTagName("li");
+            var info = document.getElementById('info');
+            var starshow = 0;
+                for (var i = 0; i < images.length; i++) {
+                    images[i].onmouseover = (function (num) {
+                        return function () {
+                            for (var j = 0; j < images.length; j++) {
+                                if (j <= num) {
+                                    images[j].className = "imageOne";
+                                } else {
+                                    images[j].className = "image";
+                                }
+                            }
+                        }
+                    }(i));
+                    images[i].onmouseup = (function (i) {
+                        return function () {
+                            if(submitted==false){
+                                starshow = 1+i;
+                                yourrate = starshow;
+                                info.innerHTML = 'you rate it '+starshow+' stars!';
+                            }else{
+                                info.innerHTML = "you have already rated this file, see whether there are other files you need";
+                            }
+                        }
+                    }(i));
+                }
+            }
+        
+        function submit_rate(current_filename){
+            //alert(yourrate);
+            if(isNaN(yourrate)){
+                another_info.innerHTML="Please rate this document first before submit";
+            }else{
+                document.getElementById('rate_submit_button').style.visibility = 'hidden';
+                //create url
+                let arrNew=new Array();
+                arrNew.push('./');
+                arrNew.push(fname);
+                let url=arrNew.join('');
+
+                var httpRequest = new XMLHttpRequest();
+                httpRequest.open('POST', url, true); 
+                httpRequest.setRequestHeader("Content-type","application/json");
+                var obj = {score: yourrate};
+                httpRequest.send(JSON.stringify(obj)); 
+
+                httpRequest.onreadystatechange = function () {
+                    if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+                        var json = httpRequest.responseText;
+                        another_info.innerHTML=json;
+                    }
+                };
+                info.innerHTML= '';
+                submitted = true;
+            }
+        }
+    </script>
+</head>
+
+<body>
+	<header>
+	  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+	    <a class="navbar-brand" href="/homePage">BINARYGUARDIAN</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" 
+      data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        
+      <span class="navbar-toggler-icon"></span>
+	    </button>
+	    <div class="collapse navbar-collapse" id="navbarCollapse">
+	      <ul class="navbar-nav mr-auto">
+	        <li class="nav-item active">
+	          <a class="nav-link" href="/homePage">Home<span class="sr-only">(current)</span></a>
+	        </li><li class="nav-item">
+				  <a class="nav-link" href="/userCenter">UserCenter</a>
+			  </li>
+	        <li class="nav-item">
+	          <a class="nav-link" href="/allfiles">Files</a>
+	        </li>
+
+	      </ul>
+			&nbsp&nbsp
+			<form method='post' action='/logout'>
+				<button class="btn btn-secondary">Logout</button>
+			</form>
+	    </div>
+	  </nav>
+	</header>
+	<div class="container">
+		<br><br><br><br>
+		<h1>
+		    <%= filename %><br><br>
+		</h1>
+		<div class="row">
+		    <div class="col-md-4 order-md-2 mb-4">
+				<br><br><br>
+		      <h4 class="d-flex justify-content-between align-items-center mb-3">
+		        <span class="text-muted">Rate:</span>
+		      </h4>
+		      <div>
+		          <h5><%= numOfRate %> rate this file</h5>
+		          <h5>current rate is <%= currentRate %> </h5>
+		          <ul id="box">
+		              <li class="image"></li>
+		              <li class="image"></li>
+		              <li class="image"></li>
+		              <li class="image"></li>
+		              <li class="image"></li>
+		          
+		          </ul>
+		          <div id="info"></div>
+		          <div id="another_info"></div>
+              <button id='rate_submit_button' class="btn btn-secondary" 
+              onclick="submit_rate()">submit rate</button><br/><br/>
+		          
+		      </div>
+
+
+		
+        
+	
+		    </div>
+		    <div class="col-md-8 order-md-1">
+				<h3 class="d-flex justify-content-between align-items-center mb-3">
+				  <span class="text-muted">Description:</span>
+				</h3>
+				<hr class="featurette-divider">
+				<h5 class="d-flex justify-content-between align-items-center mb-3">
+          <span class="text-muted"><%= desc %></span><br><br></h5>
+		    </div>
+		  </div>
+		  <a class="btn btn-primary my-2" href="./downloadfile/<%= filename %>">download this file</a>
+	</div>
+	
+
+    
+</body>
+
+</html>

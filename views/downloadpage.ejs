@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+   
+	<link href="/css/styleallfiles.css" rel="stylesheet" type="text/css" />
+	
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" 
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" 
+	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+</head>
+
+<body >
+
+	<header>
+
+	  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+	    <a class="navbar-brand" href="/homePage">BINARYGUARDIAN</a>
+		
+		<button class="navbar-toggler" type="button" data-toggle="collapse" 
+		data-target="#navbarCollapse" aria-controls="navbarCollapse" 
+		aria-expanded="false" aria-label="Toggle navigation">
+
+	      <span class="navbar-toggler-icon"></span>
+	    </button>
+	    <div class="collapse navbar-collapse" id="navbarCollapse">
+	      <ul class="navbar-nav mr-auto">
+	        <li class="nav-item active">
+	          <a class="nav-link" href="/homePage">Home<span class="sr-only">(current)</span></a>
+	        </li>
+	        <li class="nav-item">
+	          <a class="nav-link" href="/userCenter">UserCenter</a>
+	        </li>
+		</ul>
+		<%if(_id!==undefined){%>
+			<form method='post' action='/logout'>
+				<button class="btn btn-secondary">Logout</button>
+			</form>
+		<%}else{%>
+			<a class="btn btn-outline-primary" href="/register">Register</a>&nbsp&nbsp
+			<a class="btn btn-primary my-2" href="/login">Log in</a>
+		<%}%>
+	    </div>
+	  </nav>
+	</header>
+	<br><br><br><br><br><br><br><br>
+		<div class="serch">
+			<h4 class="d-flex justify-content-between align-items-center mb-3">
+				<span class="text-muted" style="margin: 0 auto ; text-align: center">File Filter</span>
+			</h4>
+			<form action="/allfiles" method="post">
+				<div class="margin" align="center">
+						      File name <br/>  <input  class="form-control" type="text" name="targetfilename">
+				</div>
+						<div align="center" class="margin">
+						  Level <br/> <select name="level" id="level" class="bar" class="form-control">
+						    <option value="0">--Please select--</option>
+						    <option value="1">preschool</option>
+						    <option value="2">primary</option>
+						    <option value="3">high school</option>
+						    <option value="4">University</option>	
+						    <option value="5">other</option>	
+						  </select>
+						</div>
+						<div class="margin" align="center">
+						  Subject <br/> <select name="subject" id="subject" class="bar" class="form-control">
+						    <option value="0">--Please select--</option>
+						    <option value="1">English</option>
+						    <option value="2">Math</option>
+						    <option value="3">Physics</option>
+						    <option value="4">Arts</option>	
+						    <option value="5">Medicine</option>
+						    <option value="6">Language</option>
+						    <option value="7">Chemistry</option>
+						    <option value="8">Other</option>
+						  </select>
+						</div>
+				<div class="margin" align="center">
+					<input type="submit" value="Find such file" id="sub" class="btn btn-primary my-2">
+				</div>
+			 </form>
+		</div>
+		
+		<div class="container">
+			<div class="col-md-12">
+				<h1>These are all files we collected so far</h1>
+					<p><%= numOfResult %> is found</p>
+					     <% allfiles.forEach(function(file){ %>
+					
+						   <div class="col-md-8">
+						     <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+						       <div class="col p-4 d-flex flex-column position-static">
+						         <h3 class="mb-0"><%= file %></h3>
+						         <div class="mb-1 text-muted">Time update</div>
+								 <a href="./allfiles/<%= file %>" class="stretched-link">see more information</a>
+						       </div>
+						     </div>
+						   </div>
+					     <% }) %>
+				</div>
+		</div>
+
+
+</body>
+</html>

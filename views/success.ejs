@@ -1,0 +1,52 @@
+<html>
+<head>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+	
+	<link href="/css/styleallfiles.css" rel="stylesheet" type="text/css" />
+	
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" 
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" 
+	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+</script>
+
+</head>
+<body>
+<header>
+	  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+	    <a class="navbar-brand" href="/homePage">BINARYGUARDIAN</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" 
+		ata-target="#navbarCollapse" aria-controls="navbarCollapse" 
+		aria-expanded="false" aria-label="Toggle navigation">
+	      <span class="navbar-toggler-icon"></span>
+		</button>
+		
+	    <div class="collapse navbar-collapse" id="navbarCollapse">
+	      <ul class="navbar-nav mr-auto">
+	        <li class="nav-item active">
+	          <a class="nav-link" href="/homePage">Home<span class="sr-only">(current)</span></a>
+	        </li>
+	        <li class="nav-item">
+	          <a class="nav-link" href="/allfiles">Files</a>
+	        </li>
+	      </ul>
+			&nbsp&nbsp
+			<form method='post' action='/logout'>
+				<button class="btn btn-secondary">Logout</button>
+			</form>
+	    </div>
+	  </nav>
+	</header>
+	<br><br><br><br>
+	<h1>Success!</h1>
+	<p><%= message %></p>
+
+	<a class="btn btn-primary my-2" href="/userCenter">Return home to your Center</a><br><br>
+
+	<a class="btn btn-primary my-2" href="/allfiles">see what we have</a>
+</body>
+</html>

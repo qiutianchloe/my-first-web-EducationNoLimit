@@ -1,0 +1,40 @@
+nav{
+    font-size: 25px;
+    text-align: center;
+    font-family: verdana;
+}
+ *{
+    margin: 0;
+    padding: 0;
+}
+
+#box {
+    list-style: none;
+    height: 28px;
+    width: 135px;
+    overflow: hidden;
+}
+
+.image {
+    height: 28px;
+    width: 27px;
+    float: left;
+    background:url(image.gif);
+}
+
+.imageOne {
+    height: 28px;
+    width: 27px;
+    float: left;
+    background: url(image.gif) no-repeat 0 -28px;
+
+}
+body {
+    /*background: url(back.jpg);*/
+    background-repeat:no-repeat ;
+    background-size:100% 100%;
+    background-attachment:fixed;
+}
+.margin{
+    margin-left: 20px;
+}

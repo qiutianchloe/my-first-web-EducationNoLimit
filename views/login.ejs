@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link href="/css/stylelogin.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" 
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" 
+	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+    </script>	
+</head>
+<body class="text-center">
+	<header>
+	  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+	    <a class="navbar-brand" href="./homePage">BINARYGUARDIAN</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" 
+		data-target="#navbarCollapse" aria-controls="navbarCollapse" 
+		aria-expanded="false" aria-label="Toggle navigation">
+	      <span class="navbar-toggler-icon"></span>
+	    </button>
+	    <div class="collapse navbar-collapse" id="navbarCollapse">
+	      <ul class="navbar-nav mr-auto">
+	        <li class="nav-item active">
+	          <a class="nav-link" href="/homePage">Home<span class="sr-only">(current)</span></a>
+	        </li>
+	        <li class="nav-item">
+	          <a class="nav-link" href="/allfiles">Files</a>
+	        </li>
+	      </ul>
+	      <a class="btn btn-outline-primary" href="/register">Register</a>&nbsp&nbsp
+	      <a class="btn btn-primary my-2" href="/login">Log in</a>
+	    </div>
+	  </nav>
+	</header>
+<div class="container">
+	<form class="form-signin" action="/login" method="post">
+	  <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+	  <div align="center">
+	  
+	  Email: <input class="form-control" type="email" name="email">
+	  </div>
+	  
+	  <span class="err"><%=errMsg.emailErr%>
+	  </span>
+	  
+	  <br><br>
+	  
+	  <div align="center">
+	  
+	  
+	  Password: <input class="form-control" type="password" name="password">
+	  </div><span class="err"><%=errMsg.loginErr%></span>
+	  
+	  <br><br>
+	  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+	  
+	</form>
+</div>
+    
+</div>
+</body>
+</html>
