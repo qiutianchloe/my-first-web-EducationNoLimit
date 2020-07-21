@@ -17,7 +17,7 @@ const DB_URL = 'dbuser:2020info30005@test-ryy97.mongodb.net'
 //create a promise instance
 let dbPromise = new Promise(((resolve, reject) => {
     //connect
-    mongoose.connect(`mongodb+srv://${DB_URL}/${DB_NAME}?retryWrites=true&w=majority` ||"mongodb://localhost/info30005",{
+    mongoose.connect(`mongodb+srv://example",{
         useNewUrlParser:true,
         useUnifiedTopology:true,
         useCreateIndex: true,
