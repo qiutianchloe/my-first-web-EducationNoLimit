@@ -42,7 +42,7 @@ app.use(session({
   saveUninitialized: false,
   resave: false ,
   store: new MongoStore({
-      url: 'mongodb+srv://dbuser:2020info30005@test-ryy97.mongodb.net/cookies_container?retryWrites=true&w=majority',
+      url: 'mongodb+srv://example.com',
       touchAfter: 3600
   }),
   cookie: {
