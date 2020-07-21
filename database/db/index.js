@@ -12,7 +12,7 @@ mongoose.set('useCreateIndex',true)
 
 //definition
 const DB_NAME = 'userdatabase'
-const DB_URL = 'dbuser:2020info30005@test-ryy97.mongodb.net'
+const DB_URL = 'dbuser:example'
 
 //create a promise instance
 let dbPromise = new Promise(((resolve, reject) => {
